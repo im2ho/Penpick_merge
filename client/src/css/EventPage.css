@@ -1,0 +1,76 @@
+#EventCategory {
+  background-color: rgb(243, 243, 243);
+  height: 500px;
+  width: 300px;
+  padding: 10px;
+  float: left;
+  margin-right: 100px;
+  margin-left: 100px;
+  margin-top: 150px;
+}
+
+#EventMain {
+  width: 1000px;
+  margin-top: 150px;
+  float: right;
+}
+
+#eventContainer {
+  width: 1400px;
+  height: 700px;
+  display: flex;
+}
+
+#eventComments {
+  width: 850px;
+  height: 80px;
+  margin-left: 15px;
+}
+
+#eventform {
+  width: 1000px;
+  margin: auto;
+  margin-bottom: 100px;
+}
+
+#eventFormButton {
+  width: 100px;
+  margin-left: 20px;
+}
+
+#Detailcontainer {
+  height: 600px;
+  width: 1000px;
+  margin: auto;
+}
+
+#detailContent {
+  margin-top: 100px;
+}
+
+/* 이벤트 댓글 날짜 */
+#eventCommentDate {
+  float: right;
+  color: gray;
+  font-weight: 100;
+  font-size: 12px;
+  padding-top: 0;
+}
+
+/* 이벤트 게시글 목록 */
+#eventButton {
+  text-align: left;
+  width: 800px;
+  background-color: white;
+  border: none;
+  border-bottom: 0.5px solid rgb(198, 198, 198);
+  padding: 20px 0px 20px 0px;
+}
+
+#EventContent {
+  margin-bottom: 50px;
+}
+
+#eventInputAndButton {
+  margin: auto;
+}

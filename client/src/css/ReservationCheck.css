@@ -1,0 +1,43 @@
+/* h1 타이틀 */
+.reservationCheckTitle {
+    margin-top : 100px;
+    margin-left: 45px;
+}
+
+/* 예약 div */
+.reservationDiv1 {
+    margin-left:40px;
+    margin-top:30px;
+    padding:10px;
+    width:150px;
+    background-color: rgb(255, 255, 255);
+}
+
+/* 체크 섹션1 */
+.reservationCheckSection{
+    background-color: rgb(240, 240, 240);
+    padding:50px;
+    width:50%;
+    height:300px;
+    border:1px solid;
+    border-radius: 10px;
+    margin-left:50px;
+}
+
+/* 체크 섹션2 */
+
+
+/* 목록이미지 */
+.listImg {
+    width:40px;
+    height:40px;    
+}
+
+/* 예약 펜션 이미지 */
+.reservationImg {
+    float:right;
+    margin-left:300px;
+    margin-top:-70px;
+    width:300px;
+    height:200px;
+}
