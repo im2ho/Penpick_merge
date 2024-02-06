@@ -79,7 +79,7 @@ export default function SignUp() {
     const naverRef = useRef()
 
     const NAVER_CLIENT_ID = "JOrgTkSms_oef7S497wp";
-    const NAVER_CALLBACK_URL = "http://localhost:3000/";
+    const NAVER_CALLBACK_URL = "http://localhost:3000/login";
 
     //네이버 로그인 초기화
 	  const initializeNaverLogin = () => {
@@ -126,7 +126,7 @@ export default function SignUp() {
           .then(serverResponse => {
             console.log(serverResponse.data);
             alert("펜픽에 오신 것을 환영합니다");
-            window.location.href="http://localhost:3000/";
+            window.location.href="/";
           })
           .catch(error => {
             console.error(error);
@@ -154,6 +154,12 @@ export default function SignUp() {
             <img src={logo} alt="로고" style={{width:'180px', margin:'auto'}}/>
             <p id="emailLoginTitle"><strong>이메일로 펜픽하기</strong></p>
                 <hr style={{marginBottom:"30px"}}/>
+                <label
+                    style={{ float: "left", fontSize: "small", marginLeft: "2px" }}
+                >
+                    이메일
+                </label>
+                <div class="dot-badge"></div>
                 <input 
                     id='emailInput'
                     type='email'
@@ -163,6 +169,12 @@ export default function SignUp() {
                     value={userEmail}
                     onChange={e => setUserEmail(e.target.value)}
                 /><br />
+                <label
+                    style={{ float: "left", fontSize: "small", marginLeft: "2px" }}
+                >
+                    비밀번호
+                </label>
+                <div class="dot-badge"></div>
                 <input 
                     id='passwordInput'
                     type='password'
@@ -171,7 +183,8 @@ export default function SignUp() {
                     name='input_pw'
                     value={password}
                     onChange={e => setPassword(e.target.value)}
-                /><br />
+                />
+                <a href="/rest-password" id="reset-password">비밀번호 재설정</a>
                 <button id='loginButton' type="button" onClick={handleLogin}>Log In</button>
             </form>
             <div id="social-login-line" style={{width:"430px", margin:"auto", marginTop:"30px", marginBottom:"30px"}}>Other</div>
@@ -195,8 +208,8 @@ export default function SignUp() {
                 <img src={NaverLoginLogo} alt="네이버로그인 로고" id="naverLogin-button"/>
 			</NaverLoginBtn>
             <div id="signUpMessage">
-                <p>계정이 없으신가요?</p>
-                <a href="/signUp" style={{color:"darkBlue"}}>이메일로 회원가입</a>
+                <span>계정이 없으신가요?</span>
+                <a href="/signUp" style={{color:"darkBlue", marginLeft:"10px"}}>이메일로 회원가입</a>
             </div>
         </div>
         </div>

@@ -59,6 +59,23 @@ public class UserService {
 	}
 	
 	//비밀번호 변경
-	
+	public String changePassword(String userEmail, String currentPassword, String newPassword) {
+        
+		// 현재 로그인한 사용자 정보 가져오기
+        Optional<Users> userOptional = userRepository.findByUserEmail(userEmail);
+
+        Users user = userOptional.get();
+        
+        // 현재 비밀번호 일치 여부 확인
+        if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
+            return "현재 비밀번호가 일치하지 않습니다.";
+        }
+
+        // 새로운 비밀번호 설정
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+
+        return "비밀번호가 성공적으로 변경되었습니다.";
+    }
 
 }

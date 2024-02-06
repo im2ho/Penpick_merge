@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/PasswordModal.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import $ from "jquery";
 
 const PasswordModal = ({ isOpen, onClose }) => {
 
@@ -14,6 +15,12 @@ const PasswordModal = ({ isOpen, onClose }) => {
   // 새로운 비밀번호 확인
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
+  // 닫기(X) 버튼 누를시 입력값 초기화
+  const resetFields = () => {
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmNewPassword('');
+  };
 
   //로그인한 사용자 비밀번호
   //로그인한 사용자 정보 받아오기
@@ -32,7 +39,35 @@ const PasswordModal = ({ isOpen, onClose }) => {
     fetchUserData();
     }, []);
 
+  //새 비밀번호, 비밀번호 확인 값 변경될 때마다 일치 확인 함수 호출
+  useEffect(() => {
+    passwordCheck();
+  }, [newPassword, confirmNewPassword]);
+
+  //비밀번호 확인 문구
+  const passwordCheck = () => {
+    const newPasswordValue = $("#new-password-input").val();
+    const confirmNewPasswordValue = $("#confirm-new-password-input").val();
+  
+    if (newPasswordValue === confirmNewPasswordValue) {
+      $("#pwConfirm").text("비밀번호 일치").css("color", "green");
+    } else {
+      $("#pwConfirm").text("비밀번호가 일치하지 않습니다").css("color", "red");
+    }
+  };
+
+  // 비밀번호 변경 정보 서버로 전송
   const handleChangePassword = async () => {
+
+    // 비밀번호 일치 여부 확인
+    const newPasswordValue = $("#new-password-input").val();
+    const confirmNewPasswordValue = $("#confirm-new-password-input").val();
+
+    if (newPasswordValue !== confirmNewPasswordValue) {
+      alert("변경할 비밀번호 확인 값이 일치하지 않습니다.");
+      return;  
+    }
+
     try {
       const response = await axios.put('http://localhost:8282/api/user/changePassword', {
         currentPassword,
@@ -41,18 +76,20 @@ const PasswordModal = ({ isOpen, onClose }) => {
         withCredentials: true,
       });
 
-      alert("비밀번호가 성공적으로 변경되었습니다");
+      alert("비밀번호가 변경되었습니다");
+      window.location.href="http://localhost:3000/";
     } catch (error) {
       console.error('비밀번호 변경 실패', error);
-      alert("비밀번호 변경에 실패했습니다");
+      //콘솔창 보고 파악 필요..
+      alert("현재 비밀번호가 일치하지 않습니다.");
     }
   };
 
   return (
     <div className={`password-modal ${isOpen ? 'open' : ''}`}>
       <div className="modal-content">
-        <span className="close" onClick={onClose}>&times;</span><br />
-        <h2 style={{textAlign:"center"}}>비밀번호 재설정</h2><br />
+        <button class="btn-close" onClick={() => { onClose(); resetFields(); }} /><br />
+        <h3 style={{textAlign:"center", fontWeight:"bold"}}>비밀번호 재설정</h3><br />
 
         <label id="current-password-info">현재 비밀번호</label>
         <input
@@ -69,6 +106,7 @@ const PasswordModal = ({ isOpen, onClose }) => {
           name="newPassword"
           id="new-password-input"
           value={newPassword}
+          onInput={passwordCheck}
           onChange={(e) => setNewPassword(e.target.value)}
         /><br />
 
@@ -78,8 +116,18 @@ const PasswordModal = ({ isOpen, onClose }) => {
           name="confirmNewPassword"
           id="confirm-new-password-input"
           value={confirmNewPassword}
+          onInput={passwordCheck}
           onChange={(e) => setConfirmNewPassword(e.target.value)}
-        /><br /><br />
+        />
+        <span
+            id="pwConfirm"
+            style={{
+              marginTop: "2px",
+              color: "gray",
+              fontSize: "small",
+            }}
+        />
+        <br /><br />
 
         <button id="changePassword-button" onClick={handleChangePassword}>비밀번호 변경</button>
       </div>

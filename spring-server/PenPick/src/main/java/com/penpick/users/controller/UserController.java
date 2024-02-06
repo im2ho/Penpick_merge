@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.penpick.users.dto.ChangePasswordDTO;
 import com.penpick.users.model.Users;
 import com.penpick.users.repository.UserRepository;
 import com.penpick.users.service.UserService;
@@ -90,8 +91,17 @@ public class UserController {
     
     //비빌번호 재설정
     @PutMapping("/changePassword")
-    public void changePassword(){
-    	
+    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordDTO request, HttpSession session) {
+  
+    	String userEmail = (String) session.getAttribute("user");
+
+        String result = userService.changePassword(userEmail, request.getCurrentPassword(), request.getNewPassword());
+
+        if (result.startsWith("비밀번호가")) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.badRequest().body(result);
+        }
     }
     
     //회원 탈퇴 컨트롤러

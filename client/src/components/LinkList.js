@@ -16,6 +16,7 @@ import FreshHome from "./FreshHome";
 import PrevFresh from "./PrevFresh";
 import FinishOrder from "./FinishOrder";
 import ReservationCheck from "./ReservationCheck";
+import ResetPassword from "./ResetPassword";
 
 function Link() {
   const [userEmail, setUserEmail] = useState("");
@@ -59,6 +60,7 @@ function Link() {
             {/* 로그인 및 회원가입 */}
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUp />} />
+            <Route path="/rest-password" element={<ResetPassword />} />
           </>
         )}
         {/*로그인 상태에서만 유효한 경로 */}

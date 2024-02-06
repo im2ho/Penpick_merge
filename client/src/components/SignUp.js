@@ -47,7 +47,7 @@ export default function SignUp() {
     setNewUser((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
-  // 라디오 버튼에서의 변경을 처리하는 함수
+  // 라디오 버튼 체크 함수
   const handleGenderChange = (e) => {
     const { value } = e.target;
     setNewUser((prevUser) => ({ ...prevUser, gender: value }));
@@ -99,11 +99,12 @@ export default function SignUp() {
       /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_+])(?=.*[0-9]).{8,}$/;
     const isValid = passwordRegex.test(newPassword);
 
-    // 입력된 비밀번호와 유효성 결과 상태 업데이트
+    // 입력된 비밀번호와 유효성 검사 업데이트
     setNewUser((prevUser) => ({ ...prevUser, password: newPassword }));
     setIsPasswordValid(isValid);
   };
 
+  //비밀번호 확인 문구
   const passwordCheck = () => {
     if ($("#setPassword").val() === $("#checkPassword").val()) {
       $("#pwConfirm").text("비밀번호 일치").css("color", "green");

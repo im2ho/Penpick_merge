@@ -16,6 +16,9 @@ export default function MyPage(){
     const [isEditing, setIsEditing] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    //소셜로그인 계정 판별용
+    const [hasAccessToken, setHasAccessToken] = useState(false);
+
     //모달창 띄우기
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,6 +32,9 @@ export default function MyPage(){
                 });
                 setUserInfo(res.data);
                 setEditedUserInfo(res.data);
+
+                // 소셜로그인 계정일 경우(accessToken이 존재) 비밀번호 변경 버튼 숨기기
+                setHasAccessToken(!!res.data.accessToken);
             } catch (err) {
                 console.error('로그인 정보를 불러오지 못했습니다', err);
             } finally {
@@ -245,8 +251,15 @@ export default function MyPage(){
                         </div>
                     )}
                     <hr style={{marginTop:"50px"}}/>
-                    <button id="Change-password-button" onClick={toggleModal}>비밀번호 변경</button>
-                    <PasswordModal isOpen={isModalOpen} onClose={toggleModal} />
+                    {/* 소셜로그인 계정이 아닐 때(accessToken 없음)만 변경 버튼 활성화 */}
+                    {hasAccessToken ? (
+                        <>
+                            <button id="Change-password-button" onClick={toggleModal}>
+                                비밀번호 변경
+                            </button>
+                            <PasswordModal isOpen={isModalOpen} onClose={toggleModal} />
+                        </>
+                    ) : null}
                     <button id="signOut-button" onClick={handleSignOut}>회원 탈퇴</button>
                 </section>
                 </div>
