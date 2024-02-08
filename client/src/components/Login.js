@@ -79,7 +79,7 @@ export default function SignUp() {
     const naverRef = useRef()
 
     const NAVER_CLIENT_ID = "JOrgTkSms_oef7S497wp";
-    const NAVER_CALLBACK_URL = "http://localhost:3000/login";
+    const NAVER_CALLBACK_URL = "http://localhost:3000/";
 
     //네이버 로그인 초기화
 	  const initializeNaverLogin = () => {
