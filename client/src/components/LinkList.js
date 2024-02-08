@@ -17,6 +17,7 @@ import PrevFresh from "./PrevFresh";
 import FinishOrder from "./FinishOrder";
 import ReservationCheck from "./ReservationCheck";
 import ResetPassword from "./ResetPassword";
+import EmptyPage from "./EmptyPage";
 
 function Link() {
   const [userEmail, setUserEmail] = useState("");
@@ -95,6 +96,8 @@ function Link() {
         <Route path="/FinishOrder" element={<FinishOrder />}></Route>
         {/* 예약 정보 확인 페이지 */}
         <Route path="/ReservationCheck" element={<ReservationCheck />}></Route>
+        {/* 지정되지 않은 경로로 접근시 보일 페이지 */}
+        <Route path="*" element={<EmptyPage />}/>
       </Routes>
     </Router>
   );
