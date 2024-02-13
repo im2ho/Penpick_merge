@@ -55,11 +55,6 @@ public class LoginController {
                 return ResponseEntity.ok("로그인 성공");
             }
             
-//          if (user.getPassword().equals(loginUser.getPassword())) {
-//          session.setAttribute("user", user.getUserEmail());
-//          return ResponseEntity.ok("로그인 성공");
-//      }
-            
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
