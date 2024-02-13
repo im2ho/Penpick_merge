@@ -1,4 +1,9 @@
-.underline:hover {
-  text-decoration: underline;
-  cursor: pointer;
+#QnA-header{
+  margin-top: 150px;
+  margin-left: 70px;
+}
+
+#qusetion-list-container{
+  margin-top: 50px;
+  text-align: center;
 }

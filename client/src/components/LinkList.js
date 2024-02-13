@@ -17,6 +17,9 @@ import PrevFresh from "./PrevFresh";
 import FinishOrder from "./FinishOrder";
 import ReservationCheck from "./ReservationCheck";
 import ResetPassword from "./ResetPassword";
+import QnA from "./QnAList";
+import WriteQuestion from "./WriteQusetion";
+import QuestionDetail from "./QuestionDetail";
 
 function Link() {
   const [userEmail, setUserEmail] = useState("");
@@ -95,6 +98,12 @@ function Link() {
         <Route path="/FinishOrder" element={<FinishOrder />}></Route>
         {/* 예약 정보 확인 페이지 */}
         <Route path="/ReservationCheck" element={<ReservationCheck />}></Route>
+        {/* 고객센터 페이지 */}
+        <Route path="/QnA" element={<QnA />} />
+        {/* 문의글 작성 페이지 */}
+        <Route path="/writeQuestion" element={<WriteQuestion />}/>
+        {/* 문의글 상세 페이지 */}
+        <Route path="/questionDetail/:questionId" element={<QuestionDetail />} />
       </Routes>
     </Router>
   );
