@@ -17,13 +17,11 @@ import PrevFresh from "./PrevFresh";
 import FinishOrder from "./FinishOrder";
 import ReservationCheck from "./ReservationCheck";
 import ResetPassword from "./ResetPassword";
-<<<<<<< HEAD
 import QnA from "./QnAList";
 import WriteQuestion from "./WriteQusetion";
 import QuestionDetail from "./QuestionDetail";
-=======
 import EmptyPage from "./EmptyPage";
->>>>>>> eb746aabbe5b045940d98dfbdff1356dc096af96
+
 
 function Link() {
   const [userEmail, setUserEmail] = useState("");
@@ -77,6 +75,7 @@ function Link() {
             <Route path="/mypage" element={<MyPage />} />
           </>
         )}
+
         {/* 로그인 여부 상관 없이 이용 가능한 페이지 */}
         {/*메인페이지 링크*/}
         <Route path="/" element={<PensionMainPage />} />
@@ -102,18 +101,16 @@ function Link() {
         <Route path="/FinishOrder" element={<FinishOrder />}></Route>
         {/* 예약 정보 확인 페이지 */}
         <Route path="/ReservationCheck" element={<ReservationCheck />}></Route>
-<<<<<<< HEAD
         {/* 고객센터 페이지 */}
         <Route path="/QnA" element={<QnA />} />
         {/* 문의글 작성 페이지 */}
         <Route path="/writeQuestion" element={<WriteQuestion />}/>
         {/* 문의글 상세 페이지 */}
         <Route path="/questionDetail/:questionId" element={<QuestionDetail />} />
-=======
+
         {/* 지정되지 않은 경로로 접근시 보일 페이지 */}
         <Route path="*" element={<EmptyPage />}/>
->>>>>>> eb746aabbe5b045940d98dfbdff1356dc096af96
-      </Routes>
+        </Routes>
     </Router>
   );
 }
